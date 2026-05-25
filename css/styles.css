@@ -1,0 +1,204 @@
+/* ── Reset ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Body ── */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    background: linear-gradient(140deg, #0c0d0ef5, #201e20);
+    color: #dbdae3de;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/* ── Header ── */
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+
+/* ── Controles ── */
+section.controles {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+
+.controles button {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid #30e520;
+    border-radius: 8px;
+    background: transparent;
+    color: #d7e1e2;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, transform 0.15s ease;
+}
+
+
+.controles button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: hsla(61, 91%, 50%, 0.989);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+
+.controles button:hover::before {
+    transform: scaleX(1);
+}
+
+
+.controles button:hover {
+    color: #0a0a0a; /* ✅ oscuro — legible sobre el fill amarillo */
+    transform: translateY(-2px);
+}
+
+
+.controles button:active {
+    transform: translateY(0);
+}
+
+/* ── Formatos ── */
+section.formatos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+
+.formatos button {
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 2px solid #2ae711;
+    border-radius: 8px;
+    background: transparent;
+    color: #d7e1e2;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, transform 0.15s ease;
+}
+
+
+.formatos button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: hsla(61, 91%, 50%, 0.989);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+
+.formatos button:hover::before {
+    transform: scaleX(1);
+}
+
+
+.formatos button:hover {
+    color: #0a0a0a; /* ✅ oscuro — legible sobre el fill amarillo */
+    transform: translateY(-2px);
+}
+
+
+.formatos button:active {
+    transform: translateY(0);
+}
+
+
+.formatos button.activo {
+    background: #c5d8c2;
+    color: #0a0a0a;
+}
+
+/* ── Paleta ── */
+.paleta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+
+.color {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 8px;
+    box-shadow: 0 4px 14px rgba(9, 211, 13, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    animation: aparecer 0.4s;
+}
+
+
+@keyframes aparecer{
+
+    from{
+
+        opacity: 0;
+        transform: scale(0.8);
+
+    }
+
+    to{
+
+        opacity: 1;
+        transform: scale(1);
+
+    }
+
+}
+
+
+.color:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(211, 9, 9, 0.4);
+}
+
+
+.color .codigo {
+    font-size: 10px;
+    font-weight: 600;
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* ── Footer ── */
+footer {
+    margin-top: 50px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+
+
+

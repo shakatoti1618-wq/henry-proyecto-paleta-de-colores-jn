@@ -2,19 +2,18 @@
 <html lang="es">
 
 <head>
-
+    
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
+    <meta name="viewport"   content="width=device-width, initial-scale=1.0">
+    
     <title>Palette Generator</title>
-
+    
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
-<body>necesito que los botones tengan un hover de animacion 
-
+<body>
 
     <!-- TITULO -->
 
@@ -22,27 +21,29 @@
 
         <h1>🎨 Palette Generator</h1>
 
-        <p>Generador de paletas aleatorias</p>
 
     </header>
+
+    <h2>Generador</h2>
 
     <!-- BOTONES -->
 
     <section class="controles">
 
-        <button>
-            6 colores
-        </button>
+        <button data-cantidad="6" onclick="generate(6)">6 colores</button>
+        <button data-cantidad="8" onclick="generate(8)">8 colores</button>
+        <button data-cantidad="9" onclick="generate(9)">9 
+        colores</button>  
 
-        <button>
-            8 colores
-        </button>
-
-        <button>
-            9 colores
-        </button>
 
     </section>
+
+    <h2>Formato</h2>    
+
+    <section class="formatos">
+        <button class="btn-formato "data-formato="hex" onclick="cambiarFormato('hex', this)">HEX</button>
+        <button class="btn-formato"        data-formato="hsl" onclick="cambiarFormato('hsl', this)">HSL</button>
+</section>
 
     <!-- CONTENEDOR COLORES -->
 
@@ -68,15 +69,19 @@
 
         </div>
 
-        <div class="color">
-
+        <div class="color"> 
         </div>
 
     </main>
 
-</body>
+    
 <footer>
     <p>&copy; 2026 Generador paletas de colores. Todos los derechos reservados.</p>
 </footer>
+
+<script src="js/script.js"></script>
+
+</body>
+
 
 </html>
