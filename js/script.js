@@ -5,25 +5,43 @@ let formatoActivo = "hex";
 
 
 function generate(cantidad) {
-    coloresActuales = [];
 
-    for (let i = 0; i < cantidad; i++) {
-        let color;
+    let nuevosColores = [];
 
-        if (formatoActivo === "hex") {
-            color = colorAleatorio();
-        } else {
-            color = colorHSL();
+    for(let i = 0; i < cantidad; i++){
+
+        if(
+
+            coloresActuales[i] &&
+
+            coloresActuales[i].bloqueado
+
+        ){
+
+            nuevosColores.push(coloresActuales[i]);
+
+        }else{
+
+            let color = formatoActivo === 'hex'
+                ? colorAleatorio()
+                : colorHSL();
+
+            nuevosColores.push({
+
+                valor: color,
+
+                bloqueado: false
+
+            });
+
         }
 
-        coloresActuales.push({
-            valor: color,
-            bloqueado: false
-        });
     }
 
+    coloresActuales = nuevosColores;
+
     renderizar();
-    mostrarToast(`✨ Nueva paleta de ${cantidad} colores`);
+
 }
 
 
@@ -54,7 +72,11 @@ function renderizar(){
 
         lock.className = 'lock';
 
-        lock.textContent = '🔓';
+        lock.textContent = colorObjeto.bloqueado
+
+    ? '🔒'
+
+    : '🔓';
 
         div.appendChild(lock);
 
@@ -95,7 +117,7 @@ function colorHSL() {
     return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
-// ✅ Recibe el botón como 'boton'
+
 function cambiarFormato(formato, boton) {
 
     formatoActivo = formato;
@@ -133,3 +155,6 @@ function mostrarToast(texto){
     }, 2000);
 
 }
+
+
+generate(6);
