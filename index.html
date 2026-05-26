@@ -15,8 +15,6 @@
 
 <body>
 
-    <!-- TITULO -->
-
     <header class="header">
 
     <div class="logo">
@@ -37,17 +35,23 @@
 
     <h2>Generador</h2>
 
-    <!-- BOTONES -->
 
-    <section class="controles">
+<section class="controles">
 
-        <button data-cantidad="6" onclick="generate(6)">6 colores</button>
-        <button data-cantidad="8" onclick="generate(8)">8 colores</button>
-        <button data-cantidad="9" onclick="generate(9)">9 
-        colores</button>  
+    <select id="cantidadColores">
+        <option value="6">6 colores</option>
+        <option value="8">8 colores</option>
+        <option value="9">9 colores</option>
+    </select>
 
+<button 
 
-    </section>
+    class="btn-generar"                     onclick="generarDesdeSelect()">
+    🎨 Generar
+
+</button>
+
+</section>
 
     <h2>Formato</h2>    
 
@@ -62,49 +66,32 @@
 
 <section class="acciones">
 
-    <button onclick="guardarPaleta()">
+    <input 
+        type="text"
+        id="nombrePaleta"
+        placeholder="Nombre de la paleta"
+    >
 
+    <button onclick="guardarPaleta()">
+        
         ❤️ Guardar Paleta
 
     </button>
 
 </section>
+    
+<main class="paleta">
+    
+</main>
 
 
-
-    <!-- CONTENEDOR COLORES -->
-
-    <main class="paleta">
-
-        <div class="color">
-
-        </div>
-
-        <div class="color">
-
-        </div>
-
-        <div class="color">
-
-        </div>
-
-        <div class="color">
-
-        </div>
-
-        <div class="color">
-
-        </div>
-
-        <div class="color"> 
-        </div>
-
-    </main>
-
-
-    <section class="guardadas">
+<section class="guardadas">
 
     <h2>❤️ Paletas Guardadas</h2>
+
+    <button class="btn-reset" onclick="resetearPaletas()">
+        ♻️ Resetear Paletas
+    </button>
 
     <div id="listaGuardadas"></div>
 

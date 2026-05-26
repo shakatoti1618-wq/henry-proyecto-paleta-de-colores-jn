@@ -88,6 +88,12 @@ function renderizar(){
 
         lock.textContent = colorObjeto.bloqueado ? '🔒' : '🔓';
 
+        mostrarToast(
+        colorObjeto.bloqueado
+        ? '🔒 Color bloqueado'
+        : '🔓 Color desbloqueado'
+    );
+
 });
         
         div.addEventListener('click', () => {
@@ -162,21 +168,33 @@ generate(6);
 
 function guardarPaleta(){
 
+    if(coloresActuales.length === 0){
+
+        mostrarToast('⚠️ Genera una paleta primero');
+
+        return;
+
+    }
+
+    const input = document.getElementById('nombrePaleta');
+
+    const nombre = input.value.trim();
+
     let guardadas = JSON.parse(
 
         localStorage.getItem('paletas')
 
     ) || [];
 
-    if(guardadas.length >= 3){
+    const nuevaPaleta = {
 
-        mostrarToast('⚠️ Máximo 3 paletas');
+        nombre: nombre || 'Sin nombre',
 
-        return;
+        colores: [...coloresActuales]
 
-    }
+    };
 
-    guardadas.push(coloresActuales);
+    guardadas.push(nuevaPaleta);
 
     localStorage.setItem(
 
@@ -186,11 +204,14 @@ function guardarPaleta(){
 
     );
 
+    input.value = '';
+
     mostrarToast('❤️ Paleta guardada');
 
     mostrarGuardadas();
 
 }
+
 
 function mostrarGuardadas(){
 
@@ -206,11 +227,19 @@ function mostrarGuardadas(){
 
     guardadas.forEach((paleta, index) => {
 
+        const contenedor = document.createElement('div');
+
+        contenedor.className = 'contenedor-paleta';
+
+        const titulo = document.createElement('h3');
+
+        titulo.textContent = paleta.nombre;
+
         const fila = document.createElement('div');
 
         fila.className = 'mini-paleta';
 
-        paleta.forEach(color => {
+        paleta.colores.forEach(color => {
 
             const mini = document.createElement('div');
 
@@ -218,23 +247,31 @@ function mostrarGuardadas(){
 
             mini.style.background = color.valor;
 
+            mini.title = color.valor;
+
             fila.appendChild(mini);
 
         });
 
         const borrar = document.createElement('button');
 
+        borrar.className = 'btn-borrar';
+
         borrar.textContent = '🗑️';
 
         borrar.addEventListener('click', () => {
 
-        eliminarPaleta(index);
+            eliminarPaleta(index);
 
-});
+        });
 
-        lista.appendChild(fila);
+        contenedor.appendChild(titulo);
 
-        lista.appendChild(borrar);
+        contenedor.appendChild(fila);
+
+        contenedor.appendChild(borrar);
+
+        lista.appendChild(contenedor);
 
     });
 
@@ -263,5 +300,40 @@ function eliminarPaleta(index){
     mostrarToast('🗑️ Paleta eliminada');
 
     mostrarGuardadas();
+
+}
+
+
+function generarDesdeSelect() {
+
+    const select = document.getElementById("cantidadColores");
+
+    const cantidad = parseInt(select.value);
+
+    generate(cantidad);
+
+    mostrarToast(`🎨 Paleta de ${cantidad} colores generada`);
+
+}
+
+function resetearPaletas(){
+
+    const confirmar = confirm(
+        '¿Seguro que deseas eliminar todas las paletas guardadas?'
+    );
+
+    if(!confirmar){
+
+        mostrarToast('❌ Eliminación cancelada');
+
+        return;
+
+    }
+
+    localStorage.removeItem('paletas');
+
+    mostrarGuardadas();
+
+    mostrarToast('♻️ Todas las paletas fueron eliminadas');
 
 }
