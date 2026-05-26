@@ -67,7 +67,7 @@ body {
 
 }
 
-/* ── Controles ── */
+
 section.controles {
     display: flex;
     justify-content: center;
@@ -119,7 +119,7 @@ section.controles {
     transform: translateY(0);
 }
 
-/* ── Formatos ── */
+
 section.formatos {
     display: flex;
     justify-content: center;
@@ -293,7 +293,7 @@ section.formatos {
 
 }
 
-/* ── Footer ── */
+
 footer {
     margin-top: 50px;
     font-size: 12px;
@@ -363,3 +363,142 @@ footer {
 
 }
 
+
+.acciones{
+
+    margin-top: 25px;
+
+}
+
+
+.acciones button{
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #3b8f0a;
+
+    color: rgb(237, 226, 226);
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.acciones button:hover{
+
+    transform: scale(1.05);
+
+}
+
+
+.guardadas{
+
+    margin-top: 60px;
+
+}
+
+
+#listaGuardadas{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    margin-top: 20px;
+
+}
+
+
+.mini-paleta{
+
+    display: flex;
+
+    gap: 10px;
+
+    justify-content: flex-start;
+
+    align-items: center;
+
+    flex: 1;
+
+    overflow-x: auto;
+
+}
+
+
+
+.mini-color{
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 10px;
+
+    transition: 0.3s;
+
+}
+
+.mini-color:hover{
+
+    transform: scale(1.08);
+
+}
+
+.contenedor-paleta{
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background: rgba(255,255,255,0.05);
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    width: fit-content;
+
+    margin: 0 auto;
+
+}
+
+
+.btn-borrar{
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+
+.btn-borrar:hover{
+
+    transform: scale(1.1);
+
+    background: rgba(255,0,0,0.25);
+
+}

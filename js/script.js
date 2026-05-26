@@ -158,3 +158,110 @@ function mostrarToast(texto){
 
 
 generate(6);
+
+
+function guardarPaleta(){
+
+    let guardadas = JSON.parse(
+
+        localStorage.getItem('paletas')
+
+    ) || [];
+
+    if(guardadas.length >= 3){
+
+        mostrarToast('⚠️ Máximo 3 paletas');
+
+        return;
+
+    }
+
+    guardadas.push(coloresActuales);
+
+    localStorage.setItem(
+
+        'paletas',
+
+        JSON.stringify(guardadas)
+
+    );
+
+    mostrarToast('❤️ Paleta guardada');
+
+    mostrarGuardadas();
+
+}
+
+function mostrarGuardadas(){
+
+    const lista = document.getElementById('listaGuardadas');
+
+    lista.innerHTML = '';
+
+    const guardadas = JSON.parse(
+
+        localStorage.getItem('paletas')
+
+    ) || [];
+
+    guardadas.forEach((paleta, index) => {
+
+        const fila = document.createElement('div');
+
+        fila.className = 'mini-paleta';
+
+        paleta.forEach(color => {
+
+            const mini = document.createElement('div');
+
+            mini.className = 'mini-color';
+
+            mini.style.background = color.valor;
+
+            fila.appendChild(mini);
+
+        });
+
+        const borrar = document.createElement('button');
+
+        borrar.textContent = '🗑️';
+
+        borrar.addEventListener('click', () => {
+
+        eliminarPaleta(index);
+
+});
+
+        lista.appendChild(fila);
+
+        lista.appendChild(borrar);
+
+    });
+
+}
+
+mostrarGuardadas();
+
+function eliminarPaleta(index){
+
+    let guardadas = JSON.parse(
+
+        localStorage.getItem('paletas')
+
+    ) || [];
+
+    guardadas.splice(index, 1);
+
+    localStorage.setItem(
+
+        'paletas',
+
+        JSON.stringify(guardadas)
+
+    );
+
+    mostrarToast('🗑️ Paleta eliminada');
+
+    mostrarGuardadas();
+
+}
