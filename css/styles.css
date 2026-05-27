@@ -188,6 +188,8 @@ section.formatos {
 
     width: 100%;
 
+    transition: all 0.4s ease;
+
 }
 
 
@@ -209,7 +211,7 @@ section.formatos {
 
     box-shadow: 0 4px 14px rgba(9, 211, 13, 0.25);
 
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.35s ease;
 
     cursor: pointer;
 
@@ -227,14 +229,16 @@ section.formatos {
     from{
 
         opacity: 0;
-        transform: scale(0.8);
+
+        transform: scale(0.8) translateY(20px);
 
     }
 
     to{
 
         opacity: 1;
-        transform: scale(1);
+
+        transform: scale(1) translateY(0);
 
     }
 
@@ -677,5 +681,31 @@ select {
     color: black;
 
     transform: translateY(-2px);
+
+}
+
+.btn-usar{
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.btn-usar:hover{
+
+    transform: scale(1.15);
+
+    background: rgba(255,255,255,0.15);
+
+    border-radius: 8px;
 
 }

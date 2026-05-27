@@ -42,6 +42,8 @@ function generate(cantidad) {
 
     coloresActuales = nuevosColores;
 
+    actualizarLayout(cantidad);
+
     renderizar();
 
 }
@@ -269,6 +271,18 @@ function mostrarGuardadas(){
 
         const borrar = document.createElement('button');
 
+        const usar = document.createElement('button');
+
+        usar.className = 'btn-usar';
+
+        usar.textContent = '🎨';
+
+        usar.addEventListener('click', () => {
+
+        cargarPaleta(index);
+
+});
+
         borrar.className = 'btn-borrar';
 
         borrar.textContent = '🗑️';
@@ -282,6 +296,8 @@ function mostrarGuardadas(){
         contenedor.appendChild(titulo);
 
         contenedor.appendChild(fila);
+
+        contenedor.appendChild(usar);
 
         contenedor.appendChild(borrar);
 
@@ -451,5 +467,52 @@ function hexAHSL(H){
     l = +(l * 100).toFixed(1);
 
     return `hsl(${h}, ${s}%, ${l}%)`;
+
+}
+
+function actualizarLayout(cantidad){
+
+    const paleta = document.querySelector('.paleta');
+
+    if(cantidad <= 6){
+
+        paleta.style.gridTemplateColumns = 
+        'repeat(auto-fit, minmax(180px, 1fr))';
+
+    }
+
+    else if(cantidad <= 8){
+
+        paleta.style.gridTemplateColumns = 
+        'repeat(auto-fit, minmax(150px, 1fr))';
+
+    }
+
+    else{
+
+        paleta.style.gridTemplateColumns = 
+        'repeat(auto-fit, minmax(120px, 1fr))';
+
+    }
+
+}
+
+function cargarPaleta(index){
+
+    const guardadas = JSON.parse(
+
+        localStorage.getItem('paletas')
+
+    ) || [];
+
+    const paletaSeleccionada = guardadas[index];
+
+    coloresActuales = paletaSeleccionada.colores;
+
+    actualizarLayout(coloresActuales.length);
+
+    renderizar();
+
+    mostrarToast('🎨 Paleta cargada');
 
 }
